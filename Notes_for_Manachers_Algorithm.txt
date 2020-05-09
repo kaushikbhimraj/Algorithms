@@ -1,0 +1,34 @@
+To see the longest palindromic substring in a string 
+
+Process:
+	
+	Have a dictionary (will take space)
+	{
+		a: index
+		b: [index, index_2, ...]
+
+	}
+
+Manacher's Algorithm:
+------------------------
+|                 |
+a  b  a  x  a  b  a  x  a  b  y  b  a  x  a  b  y  b
+0  1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16 17 
+1  3  1  7  1  9  1  5  1    
+
+
+	Note:
+		- Manacher's is sensitive to even and odd lengths. 
+			with even palindrome
+
+	Cases:
+		- Do not pick charcter as a new center if the palindrome under it is totally contained under the current palindrome (In other words, if you have smaller palindrome inside the bigger on, skip it.)
+ 
+ 		- Current palindrome expands all the way to the length of the string, break out of the while loop. 
+
+ 		- Pick the center, if potential palindrome expands till right edge and its mirror expends till the left edge of the current palindrome. 
+
+ 		- Don't pick the center, if palindrome expands till right edge and its mirror expands beyond left edge. 
+
+ 		
+ 

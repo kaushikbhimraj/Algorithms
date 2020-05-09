@@ -1,0 +1,81 @@
+Sunday: 11/10/2019
+-----------------------------------------------
+//DEFANG AN IP ADDRESS// (Easy)
+Given a valid (IPv4) IP address, return a defanged version of that IP address.
+A defanged IP address replaces every period "." with "[.]".
+
+Answer:
+	Using the format of the IP address to our advantage.
+	Each section in the IP address is 3-bits max. So look for 3 then 2 and then 1
+	and move to the next section. 
+
+-----------------------------------------------
+Saturday 11/16/2019
+//REVERSE INTEGER// (Easy)
+Given a 32-bit signed integer, reverse digits of an integer.
+Note: Assume we are dealing with an environment which could only store integers within the 32-bit signed integer range: [−231,  231 − 1]. For the purpose of this problem, assume that your function returns 0 when the reversed integer overflows.
+
+Answer:
+	1    2    3 
+	100  10   0
+
+	300
+ 	 20
+	+ 1
+	---
+	321
+
+Challenges:
+	You have to figure out the exponent part very carefully. 
+	The exponent will have to -1 or else your answers will have on extra zeroth place on the right. 
+	Second challenge was due to me not reading the question properly. 
+
+-----------------------------------------------
+Saturday 11/16/2019
+// Palindrome Number// (Easy)
+Determine whether an integer is a palindrome. An integer is a palindrome when it reads the same backward as forward.
+Example 1:
+
+Input: 121
+Output: true
+Example 2:
+
+Input: -121
+Output: false
+
+
+Answer:
+	Use the same strategy as the previous problem to reverse the integer.
+	However in this case we ignore all the negative numbers. 
+	Function doesn't have to check the 32 bit limit in this case. 
+	Simply return a boolean
+
+Challenge:
+	Make sure the counter for the exponent decrement by one. 
+
+-----------------------------------------------
+Saturday 11/16/2019
+// Longest Substring Without Repeating Character//
+Given a string, find the length of the longest substring without repeating characters.
+
+Example 1:
+Input: "abcabcbb"
+Output: 3 
+Explanation: The answer is "abc", with the length of 3. 
+
+Example 2:
+Input: "bbbbb"
+Output: 1
+Explanation: The answer is "b", with the length of 1.
+
+Example 3:
+Input: "pwwkew"
+Output: 3
+Explanation: The answer is "wke", with the length of 3. 
+             Note that the answer must be a substring, "pwke" is a subsequence and not a substring.
+
+Answer:
+	There were many challenges about this problem. 
+	Formulating the correct idea took a long time. (Had to change on it three times)
+	Need to really focus on the edge cases for the problem. (Silly mistakes can cost you big time)
+	-----------------------------------------------
