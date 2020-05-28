@@ -24,6 +24,8 @@ class Solution:
 		start = l3
 		ones, tens = 0, 0
 
+		# "l1 or l2" route would work better for this scenario. 
+		# And a method to check ones and tens would be great. (Stack might slow down the efficiency)
 		while l1 and l2:
 			ones = l1.val + l2.val + tens
 			tens = 0
