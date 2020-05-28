@@ -20,12 +20,13 @@ class Permutate:
 		self.perms = []
 
 	def helper(self, i, array):
-		
 		if i == len(array)-1:
+			print(i, array)
 			self.perms.append(array[:])
 		else:
 			for j in range(i, len(array)):	
 				self.swap(array, i, j)
+				print(i, j, array)
 				self.helper(i+1, array)
 				self.swap(array, i, j)
 		return self.perms
@@ -34,4 +35,5 @@ class Permutate:
 		array[i], array[j] = array[j], array[i]
 
 x = [1,2,3,4]
-print(Permutate().helper(0, x))
+Permutate().helper(0, x)
+# print(Permutate().helper(0, x))
