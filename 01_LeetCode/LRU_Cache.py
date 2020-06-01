@@ -38,6 +38,7 @@ class LRUCache:
 
 	def get(self, key: int) -> int:
 		try:
+			# Pop value from position and place in front of list. (#ISSUE)
 			currValue = self.queue.pop(key)
 			self.queue = [currValue] + self.queue
 			return self.cache[key]
