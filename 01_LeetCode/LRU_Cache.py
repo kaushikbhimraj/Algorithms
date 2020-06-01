@@ -151,7 +151,7 @@ class LRUCache:
 		print("\n")
 
 
-
+"""
 # Test Case #1
 x = LRUCache(1)
 x.put(2,1)
@@ -189,6 +189,7 @@ x.put(1,1)
 x.put(4,1)
 print(x.get(2))
 print("\n")
+"""
 
 # Test Case #5
 # Failing this test 
