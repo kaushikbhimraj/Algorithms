@@ -72,6 +72,14 @@ class LRUCache:
 
 
 	def get(self, key: int) -> int:
+<<<<<<< HEAD
+		try:
+			# Pop value from position and place in front of list. (#ISSUE)
+			currValue = self.queue.pop(key)
+			self.queue = [currValue] + self.queue
+			return self.cache[key]
+		except KeyError:
+=======
 		# Check if node is tail, move node to head and return value. 
 		if self.checkCache(key):
 			node = self.cache[key]
@@ -88,6 +96,7 @@ class LRUCache:
 
 			return self.head.val
 		else:
+>>>>>>> 834f1bb7d100705f7e1346ba51e4e1f0321c6fd1
 			return -1
 
 
