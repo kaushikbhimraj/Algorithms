@@ -17,13 +17,14 @@ class Solution:
 
 	# When you remove an element from the array then 
 	def moveElementToEnd(array, toMove):
+		temp_array = []
 		i = 0
 		while i < len(array):
 			if array[i] == toMove:
-				array.append(array.pop(i))
-				print(array[i])
-			i += 1
-		return array
+				temp_array.append(array.pop(i))
+			else:
+				i += 1
+		return array + temp_array
 
 
 a = [2, 1, 2, 2, 2, 3, 4, 2]
