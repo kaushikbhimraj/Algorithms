@@ -23,38 +23,57 @@ class Solution:
 	# changes the index values of the array. It might good to do for a problem 
 	# But for leetcode this will mess up the output and will always be wrong. 
 	# This will work for three sum. 
-	def twoSum(self, nums, target):
+	class Solution:
+
+	def threeSum(self, nums):
+		zero_sum = []
 		nums.sort()
-		l  = 0
-		r = len(nums) - 1
+		# print(nums)
+		i = 0
 
-		while l < r:
+		for i in range(len(nums)-2):
 
-			x = nums[l]
-			y = nums[r]
+			# We do not need to consider i after nums[i]>0, since sum of 3 positive will be always greater than zero. [7]
+			if nums[i] > 0:
+				break
+			if i > 0 and nums[i] == nums[i-1]:
+				continue
 
-			if l > 0 and x == nums[l-1]:
-				l += 1
+			l, r = i+1, len(nums)-1
+			while l < r:
 
-			elif r < len(nums)-1 and y == nums[r+1]:
-				r -= 1
+				three_sum = nums[i] + nums[l] + nums[r]
 
-			else:
-				if x+y == target:
-					print(l, r)
-					r -= 1
+				if three_sum == 0:
+					zero_sum.append([nums[i], nums[l], nums[r]])
+
+					# We need to move the left and right pointers to the next different numbers, so we do not get repeating result.
+					while l < r and nums[l] == nums[l+1]:
+						l += 1
+					while l < r and nums[r] == nums[r-1]:
+						r -= 1
 					l += 1
-					# return [l, r]
-				elif x+y > target:
+					r -= 1
+				elif three_sum > 0:
 					r -= 1
 				else:
 					l += 1
 
+		return zero_sum
 
 
 
-a = [-4, -1, -1, 0, 1, 2]
-b = [0, 2, 4, 5, 7, 12]
+
+# Unit Test Cases
+a=[-1,0,1,2,-1,-4]
+b=[]
+c=[-1]
+d=[2,2,2]
+e=[0,0,0]
+f=[-9, 2, 2, 7, 10, 13]
+g=[0, 0, 0, 0]
+h=[-4,-2,1,-5,-4,-4,4,-2,0,4,0,-2,3,1,-5,0]
+
 x = Solution()
-x.twoSum(a, 1)
+print(x.threeSum(a))
 
