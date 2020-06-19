@@ -17,12 +17,12 @@ OUTPUT:
 [-124, -1, 0, 1, 3, 5, 6, 9, 12, 20, 21, 81, 121, 150]
 """
 
+from heapq import heappush, heappop
+
 class KMerge:
 	def __init__(self):
 		self.heap   = []
 		self.arrays = None
-
-
 
 	def sortall(self, arrays):
 		# Creating an empty array to populate sorted values from the array. 
@@ -38,8 +38,9 @@ class KMerge:
 			minVal, row, col = self.heap[0]
 			if col+1 < len(self.arrays[row]):
 				self.heappush((self.arrays[row][col+1], row, col+1))
+			print(self.heap)
 			self.heappop()
-			
+
 			sorted_array.append(minVal)
 
 		return sorted_array
@@ -58,27 +59,29 @@ class KMerge:
 					break
 
 	def heappop(self):
-		end = len(self.heap)
-		self.heap[0] = self.heap.pop(end - 1)
-		n = 0
-		while 2*n + 2 < end:
-			left  = 2*n + 1
-			right = 2*n + 2
+		self.heap.pop(0)
+		if self.heap:
+			self.heap[0] = self.heap.pop()
+			n = 0
 
-			if self.heap[n][0] > self.heap[left][0] and self.heap[n][0] > self.heap[right][0]:
-				if self.heap[left][0] < self.heap[right][0]:
-					self.swap(n, left)
-					n = left
+			while 2*n + 2 < len(self.heap):
+				left  = 2*n + 1
+				right = 2*n + 2
+
+				if self.heap[n][0] > self.heap[left][0] and self.heap[n][0] > self.heap[right][0]:
+					if self.heap[left][0] < self.heap[right][0]:
+						self.swap(n, left)
+						n = left
+					else:
+						self.swap(n, right)
+						n = right
 				else:
-					self.swap(n, right)
-					n = right
-			else:
-				if self.heap[n][0] > self.heap[left][0]:
-					self.swap(n, left)
-					n = left
-				else:
-					self.swap(n, right)
-					n = right
+					if self.heap[n][0] > self.heap[left][0]:
+						self.swap(n, left)
+						n = left
+					else:
+						self.swap(n, right)
+						n = right
 			
 
 	def swap(self, i, j):

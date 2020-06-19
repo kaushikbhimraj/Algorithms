@@ -30,11 +30,7 @@ class Solution:
 		self.count   = None
 		self.grid    = None
 		self.fresh   = None
-<<<<<<< HEAD
 
-=======
-  
->>>>>>> node02
 	def orangesRotting(self, grid) -> int:
 
 		# Since sequence is important for the BST, the rotten will be cache in an array. 
