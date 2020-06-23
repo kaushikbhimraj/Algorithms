@@ -56,7 +56,6 @@ class Solution:
 		# Each cycle will be counted. 
 		while rotting:
 			rotting = self.bst(rotting)
-			print(rotting)
 
 			if len(rotting) == 0:
 				break
