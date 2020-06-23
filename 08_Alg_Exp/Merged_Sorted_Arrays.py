@@ -38,7 +38,6 @@ def mergeSortedArrays(arrays):
 		if col == len(arrays[row]):
 			sorted_array.append(minValue)
 			continue
-			# heappush(newHeap, (arrays[row][col+1], row, col+1))
 		else:
 			heappush(newHeap, (arrays[row][col], row, col))
 		sorted_array.append(minValue)
