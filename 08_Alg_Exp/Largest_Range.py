@@ -19,47 +19,52 @@ OUTPUT
 """
 
 def largestRange(array):
+
+	# Need a value to keep track of the size of the array. 
+	# Need a 2 value to store the min and max of the continous range
+	longest_length = 0
+	longest_length_array = []
+
+	# Need a cache to store all the values from the given array. 
+	# The values from the array are the keys and dictionary will have a boolena for the value.
+	# This will avoid repetitions in counting. 
 	cache = {}
-	longest_subarray = []
-	longest_range = 0
-
-	longest_range_array = []
-
-	# traverse array: twice
-	# First: traverse to cache all elements in the dictionary
 	for val in array:
 		cache[val] = True
 
-	# Second: traverse each element and check +1 and -1 of it exist in dictionary.
-	# When a value is visited in the array mark it as visited in the dictionary. (avoid repeats)
-	for i in range(len(array)):
+	# For every value in the main array, check and see if there exists a value -1 and +1 in the dictionary. 
+	# And count the number of values and record the count. (while you are doing this also make sure to mark the value you visit
+	# in the dictionary as False.)
 
-		# Check value in cache is visited.
-		if not cache[array[i]]:
+	for val in array:
+		if not cache[val]:
 			continue
 
-		# else:
-		cache[array[i]] = False
-		current_range = 1
-		left  = array[i] - 1
-		right = array[i] + 1
+		cache[val] = False
+		current_length = 1
 
+		left = val - 1
+		right = val + 1
+		
+		# Loop to check if the value left of the main value exist in dictionary.
 		while left in cache:
 			cache[left] = False
-			current_range += 1
 			left -= 1
+			current_length += 1
 
+		# Loop to check if the value right of the main value exist in dictionary. 
 		while right in cache:
 			cache[right] = False
-			current_range += 1
 			right += 1
+			current_length += 1
 
-		if current_range > longest_range:
-			longest_range = current_range
-			longest_range_array = [left+1, right-1]
+		# Check and update every iteration if the range is greater than the longest range. 
+		# Also the update the 2-value array if the condition is true. 
+		if current_length > longest_length:
+			longest_length = current_length
+			longest_length_array = [left+1, right-1]
 
-	return longest_range_array
-
+	return longest_length_array
 
 a = [1, 11, 3, 0, 15, 5, 2, 4, 10, 7, 12, 6]
 
