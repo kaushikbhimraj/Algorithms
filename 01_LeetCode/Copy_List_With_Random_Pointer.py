@@ -15,31 +15,50 @@ class Node:
         self.next = next
         self.random = random
 """
+def largestRange(array):
 
-class Solution:
-    def copyRandomList(self, head: 'Node') -> 'Node':
-        if not head:
-            return head
+    # Need a value to keep track of the size of the array. 
+    # Need a 2 value to store the min and max of the continous range
+    longest_length = 0
+    longest_length_array = []
+
+    # Need a cache to store all the values from the given array. 
+    # The values from the array are the keys and dictionary will have a boolena for the value.
+    # This will avoid repetitions in counting. 
+    cache = {}
+    for val in array:
+        cache[val] = True
+
+    # For every value in the main array, check and see if there exists a value -1 and +1 in the dictionary. 
+    # And count the number of values and record the count. (while you are doing this also make sure to mark the value you visit
+    # in the dictionary as False.)
+
+    for val in array:
+        if not cache[val]:
+            continue
+
+        cache[val] = False
+        current_length = 1
+
+        left = val - 1
+        right = val + 1
         
-        copyDictionary = {}
-        node = head
-        
-        # Create a copy of each node in a dictionary without its next or random node. 
-        while node:
-            copyDictionary[node] = Node(node.val)
-            node = node.next
-        
-        # Iterate through the same list to upadte nodes in dictionary with 
-        # next/random values from original. 
-        node = head
-        while node:
-            
-            if node.next:
-                copyDictionary[node].next = copyDictionary[node.next]
-                
-            if node.random:
-                copyDictionary[node].random = copyDictionary[node.random]
-            
-            node = node.next
-        
-        return copyDictionary[head]
+        # Loop to check if the value left of the main value exist in dictionary.
+        while left in cache:
+            cache[left] = False
+            left -= 1
+            current_length += 1
+
+        # Loop to check if the value right of the main value exist in dictionary. 
+        while right in cache:
+            cache[right] = False
+            right += 1
+            current_length += 1
+
+        # Check and update every iteration if the range is greater than the longest range. 
+        # Also the update the 2-value array if the condition is true. 
+        if current_length > longest_length:
+            longest_length = current_length
+            longest_length_array = [left+1, right-1]
+
+    return longest_length_array
