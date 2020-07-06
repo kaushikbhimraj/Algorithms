@@ -19,28 +19,32 @@ A linked list can be reversed either iteratively or recursively. Could you imple
 
 class Solution:
 	def reverseList(self, head):
-		
-		# Edge case
-		if not head:
-			return head
 
-		# Algorithm has three pointers. 
-		# Initialize first and second pointer and 
-		# point #1 should be pointing to a None. 
+		# Edge case
+		# Write your code here.
+	    if not head:
+			return head
+		
+		# Three pointer algorithm. 
+		# Pointer #1: Current Node
+		# Pointer #2: Next Node
+		# Pointer #3: Next Next Node
+		
+		# Initializing the first two pointers. 
+		# Setting head.next to None.
 		p_1 = head
 		p_2 = p_1.next
 		p_1.next = None
-
+		
 		while p_2:
-			# In order to reverse a linked list, conside 3 pointers. 
-			# The main pointer in this scenario is pointer #2 and need 
-			# to save the next pointer its is pointing to before we 
-			# point to the previous value in pointer #1.  
+			# Saving the next value if pointer #2 before setting it previous node.
 			p_3 = p_2.next
 			p_2.next = p_1
-
-			# After switching, move all pointers to the right. 
+			
+			# Moving pointers to the next node. 
 			p_1 = p_2
 			p_2 = p_3
-
+			
+		# Once the end node is reach, all the nodes before it have been set to point
+		# to their previous nodes. So the list is reversed at this point. 
 		return p_1
