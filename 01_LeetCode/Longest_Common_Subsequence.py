@@ -1,7 +1,12 @@
 """
-Given two strings text1 and text2, return the length of their longest subsequence. 
+Given two strings text1 and text2, return the length of their longest common subsequence.
 
-A subsequence of a string is a new string generated from the original string with some characters(can be none) deleted without changing the relative order of the remaining characters(eg "ace" is a subsequence of "abcde" while "aec" is not). A common subsequence of two strings is a subsequence that is common to both strings. 
+A subsequence of a string is a new string generated from the original string with some 
+characters(can be none) deleted without changing the relative order of the remaining characters. 
+(eg, "ace" is a subsequence of "abcde" while "aec" is not). A common subsequence of two strings 
+is a subsequence that is common to both strings. 
+
+If there is no common subsequence, return 0.
 
 Example 1:
 
@@ -27,17 +32,60 @@ Constraints:
 The input strings consist of lowercase English characters only.
 """
 
-class prob_1143:
-	def longestCommonSubsequence(self, text1: str, text2: str) -> int:
+class Solution:
 
-		if len(text1) == 0 or len(text2) == 0:
+	# main function to execute recursive logic. 
+	def longestCommonSubsequence(self, text1, text2):
+		return self.lcs(text1, text2, 0, 0, {})
+
+	# Helper funtion to execute recursion. 
+	def lcs(self, text1, text2, i, j, memo):
+
+		# Using memoization to optimize recursion
+		key = str(i)+str(j)
+		if key in memo:
+			return memo[key]
+
+		# Check pointer is at end of array. 
+		if i <= len(text1) or j <= len(text2):
 			return 0
-		elif text1[-1] == text2[-1]:
-			return 1 + self.longestCommonSubsequence(text1[:-1], text2[:-1])
-		else:
-			return max(self.longestCommonSubsequence(text1[:-1], text2), self.longestCommonSubsequence(text1, text2[:-1]))
+
+		# When characters match count up and move pointers by 1. 
+		if text1[i] == text2[j]:
+			return 1 + self.lcs(text1, text2, i+1, j+1, memo)
+
+		# Pick the maximum value from the DFS type recursion. 
+		memo[key] = max(lcs(text1, text2, i+1, j, memo), lcs(text1, text2, i, j+1, memo))
+
+		# Return the last value from memo. 
+		return memo[key]
+
+	# Helper function to execute DP. 
+	def lcsDP(self, text1, text2, i, j):
+		m,n = len(text1), len(text2)
+
+		# Array will act as a dp table. 
+		dp = [[0]*m for _ in range(n+1)]
+
+		# Iterating through each character in both strings. 
+		for i in range(len(m)):
+			for j in range(len(n)):
+
+				# Check if there is match in characters. 
+				# Still dont understand the i+1 and j+1 in the for loop. It is supposed to give an 
+				# indexError (out of range)
+				if text1[i] == text2[j]:
+					dp[i+1][j+1] = dp[i][j] + 1
+
+				else:
+					dp[i+1][j+1] = max(dp[i+1][j], dp[i][j+1])
+
+		# Return the last element for the longest subsequence. 
+		return dp[-1][-1]
 
 
-a = "kaushik"
-b = "asi"
-print(prob_1143().longestCommonSubsequence(a, b))
+# Unit test
+a = "XMJYAUZ"
+b = "MZJAWXU"
+x = Solution()
+print(x.longestCommonSubsequence(a, b))

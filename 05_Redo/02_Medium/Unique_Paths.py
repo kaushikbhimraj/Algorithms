@@ -12,6 +12,7 @@ class Solution:
 	def __init__(self):
 		self.memo = None
 
+	# Using recursion and memoization. 
 	def uniquePaths(self, m: int, n: int):
 
 		# Create a 2-D array to store all paths. 
@@ -36,7 +37,19 @@ class Solution:
 
 		return self.memo[row][col]
 
+
+	# Using dynamic programming
+	def helperDP(self, row, col):
+
+		# Create the DP table
+		dp = [[1]*col for _ in range(row)]
+		for i in range(1, row):
+			for j in range(1, col):
+				dp[i][j] = dp[i-1][j] + dp[i][j-1]
+
+		return dp[-1][-1]
+
 row, col = 7,3
 x = Solution()
-print(x.uniquePaths(row, col))
-print(x.memo)
+print("using resursion:    ", x.uniquePaths(row, col))
+print("using dynamic prog: ", x.helperDP(row, col))
