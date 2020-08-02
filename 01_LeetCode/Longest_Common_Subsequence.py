@@ -61,15 +61,15 @@ class Solution:
 		return memo[key]
 
 	# Helper function to execute DP. 
-	def lcsDP(self, text1, text2, i, j):
+	def lcsDP(self, text1, text2):
 		m,n = len(text1), len(text2)
 
 		# Array will act as a dp table. 
 		dp = [[0]*m for _ in range(n+1)]
 
 		# Iterating through each character in both strings. 
-		for i in range(len(m)):
-			for j in range(len(n)):
+		for i in range(m-1):
+			for j in range(n-1):
 
 				# Check if there is match in characters. 
 				# Still dont understand the i+1 and j+1 in the for loop. It is supposed to give an 
@@ -89,3 +89,4 @@ a = "XMJYAUZ"
 b = "MZJAWXU"
 x = Solution()
 print(x.longestCommonSubsequence(a, b))
+print(x.lcsDP(a, b))
