@@ -26,3 +26,31 @@ class Solution:
     def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
         # Simply way of solving this. (Using the sort function of Python)
         nums1[:] = sorted(nums1[m:] + nums2)
+        # Time: O(n+m * log(n+m)) Space: O(1)
+        for i in range(m, len(nums1)):
+            nums1[i] = nums2[i-m]
+        return nums1.sort()
+
+    # This is the three pointer method, Time: O(n+m) and Space: O(1)
+    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
+        # We can have three pointers. 
+        # The first pointer will start pointing at len(nums) - 1
+        # Second pointer will start pointing at m = 3
+        p1 = m-1
+        p2 = n-1
+        p  = len(nums1) - 1
+        
+        # pointers runs to beginning of the array.
+        while p1 >= 0 and p2 >= 0:
+            
+            # Will stop only at
+            if nums1[p1] < nums2[p2]:
+                nums1[p] = nums2[p2]
+                p2 -= 1
+            
+            else:
+                nums1[p] = nums1[p1]
+                p1 -= 1
+            
+            p -= 1
+        nums1[:p2 + 1] = nums2[:p2 + 1]
