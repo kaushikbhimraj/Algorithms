@@ -26,8 +26,8 @@ The length of the array won't exceed 10,000.
 All the integers in the given input belong to the range: [-1e7, 1e7].
 """
 
-# Time: O(n**2)
-# Space: O(1)
+# Time: O(n)
+# Space: O(m) -> m is unique numbers in nums.
 
 class Solution:
     # Brute force
