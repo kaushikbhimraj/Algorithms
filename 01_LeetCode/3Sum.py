@@ -19,48 +19,50 @@ A solution set is:
 
 class Solution:
 
-	# This particular two sum method sorts the array in place and
-	# changes the index values of the array. It might good to do for a problem 
-	# But for leetcode this will mess up the output and will always be wrong. 
-	# This will work for three sum. 
-	class Solution:
-
+	# The current solution does not account for repeatitions of zero sum sets. 
+	# The way to avoid repeititions is by checking if the next element is same. 
+	# These repetitions need to be checked twice. 
+	# 			- Once when iterating through nums. 
+	# 			- Again inside the two sum loop. 
 	def threeSum(self, nums):
-		zero_sum = []
+
+		# create an array to store all sub-arrays that are zero sums. 
+		zero_sums = []
+
+		# Sort the array in place using Python's in-built Tim Sort
 		nums.sort()
-		# print(nums)
-		i = 0
 
-		for i in range(len(nums)-2):
-
-			# We do not need to consider i after nums[i]>0, since sum of 3 positive will be always greater than zero. [7]
-			if nums[i] > 0:
-				break
+		# Using a FOR loop, iterate the entire array. 
+		for i in range(len(nums)):
 			if i > 0 and nums[i] == nums[i-1]:
 				continue
 
-			l, r = i+1, len(nums)-1
+			# Create two pointers for the left and right
+			l = i+1
+			r = len(nums)-1
+
+			# Using a while loop, excute two to find the pair of numbers that compute a target sum of zero. 
 			while l < r:
 
-				three_sum = nums[i] + nums[l] + nums[r]
+				compute_sum = nums[i] + nums[l] + nums[r]
 
-				if three_sum == 0:
-					zero_sum.append([nums[i], nums[l], nums[r]])
+				if compute_sum == 0:
+					zero_sums.append([nums[i], nums[l], nums[r]])
 
-					# We need to move the left and right pointers to the next different numbers, so we do not get repeating result.
-					while l < r and nums[l] == nums[l+1]:
+					# Increment/decrement when the next elements are the same. 
+					while l < r and nums[l] == nums[l+1]: 
 						l += 1
-					while l < r and nums[r] == nums[r-1]:
+					while r > l and nums[r] == nums[r-1]:
 						r -= 1
 					l += 1
 					r -= 1
-				elif three_sum > 0:
+
+				elif compute_sum > 0:
 					r -= 1
+
 				else:
 					l += 1
-
-		return zero_sum
-
+		return zero_sums
 
 
 
