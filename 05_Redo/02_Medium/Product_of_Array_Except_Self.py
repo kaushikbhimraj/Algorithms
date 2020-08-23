@@ -44,3 +44,7 @@ class Solution:
             results.append(left[k] * right[k])
             
         return results
+
+
+# JAVA_HOME C:\jdk-13.0.1
+# PATH C:\jdk-13.0.1\bin
