@@ -25,7 +25,7 @@ class Solution:
 			i -= 1
 
 		# Make sure the arrangment is not in last permutation. 
-		if i <= 0:
+		if i >= 0:
 			# Again loop from right end. 
 			# Find immediate increament to value at i.
 			j = len(nums)-1
