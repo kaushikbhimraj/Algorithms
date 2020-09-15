@@ -33,7 +33,7 @@ Return the following binary tree:
 
 class Solution:
     def buildTree(self, preorder: List[int], inorder: List[int]) -> TreeNode:
-    	return self.helper(0, 0, len(inorder)-1, preorder, inorder)
+    	return self.helper(0, 0, len(preorder)-1, preorder, inorder)
 
 	# Given pre-order and in-order traversal arrays of a binary tree. 
 	# Re-create binary tree from the given information. 
@@ -63,7 +63,7 @@ class Solution:
 
 		# KEY NOTE ==> preStart + (inIndex - inStart) + 1 ignores left section of the preorder array.
 		# This formula finds the position of the next sub-root node in preorder array.  
-		root.left  = self.helper(preStart + 1, inStart, inIndex, preorder, inorder)
+		root.left  = self.helper(preStart + 1, inStart, inIndex-1, preorder, inorder)
 		root.right = self.helper(preStart + (inIndex-inStart) + 1, inIndex + 1, inEnd, preorder, inorder)
 
 		# After tree is create, return its root. 
