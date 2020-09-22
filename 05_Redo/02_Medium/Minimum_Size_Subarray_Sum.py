@@ -14,30 +14,31 @@ time complexity is O(n log n).
 """
 
 class Solution:
+    
+    # Sort of a SLIDING WINDOW problem.
     def minSubArrayLen(self, s: int, nums: List[int]) -> int:
-
-    	# Create variable to store length
-    	result = float("inf")
-
-    	# Left pointer
-    	left = 0
-
-    	# Variable to track a running sum
-    	val_sum = 0
-
-
-    	# Loop through each element and update running sum
-    	for i in range(len(nums)):
-    		val_sum += nums[i]
-
-    		# If the val_sum is equal or has exceed the target value of s. 
-    		# Update the results with the min length
-    		# Rather than zeroing out val_sum, remove the value at left pointer. 
-    		# Move the pointer to the next value. 
-    		while (val_sum >= s):
-    			result = min(result, i+1-left)
-    			val_sum -= nums[left]
-    			left += 1
-
-    	# Return result if it is not inf else return 0
-    	return result if result != float("inf") else 0
+        # If sum or value is greater than s, and length is less than current. Update it. 
+        # If sum is >= s but the length is > current. Skip it. 
+        
+        # So this problem is asking for contigious array. 
+        length = float("inf")
+        left = 0
+        right = 0
+        
+        # Computer running sum
+        total = 0
+        
+        # When sum exceeds target, update length and decrement from left 
+        # until sum is again less than target. 
+        while right < len(nums):
+            total += nums[right]
+            
+            while total >= s:
+                length = min(length, right+1-left)
+                total -= nums[left]
+                left += 1
+            
+            right += 1
+            
+        # Check if length was not updated. 
+        return length if length != float("inf") else 0
