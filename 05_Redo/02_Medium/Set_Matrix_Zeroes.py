@@ -35,8 +35,9 @@ class Solution:
         Do not return anything, modify matrix in-place instead.
         """        
         
-        # Would need a recursive call to change this in rows and columns. 
-        # If in that path, you find another zero, skip it.
+        # Need to preserve the previous state and ignore current zeros in matrix. 
+        # After replacing all elements in the row and colum on four sides with a set character,
+        # Traverse through matrix 2nd time and change all the characters to 0s. 
         for i in range(len(matrix)):
             for j in range(len(matrix[0])):
                 if matrix[i][j] == 0:
@@ -47,6 +48,7 @@ class Solution:
                 if matrix[i][j] == "a":
                     matrix[i][j] = 0
     
+    # Helper function to change rows and columns to "a".
     def run(self, matrix, i, j):
         # Up 
         x, y = i, j
