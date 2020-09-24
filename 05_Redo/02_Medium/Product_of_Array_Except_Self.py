@@ -19,32 +19,25 @@ as extra space for the purpose of space complexity analysis.)
 class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
         
-        # Create two empty array of length nums. 
-        left = [0]*len(nums)
-        right = [0]*len(nums)
+        #         [01, 02, 03, 04]
+        # left -> [01, 01, 02, 06]
+        #         [24, 12, 04, 01] -> right
         
-        # Set the first value of left array == 1
-        # Set the last value of right array == 1
-        left[0] = 1
-        right[-1] = 1
+        # Create two arrays of same size as nums. 
+        # Populate '1's in the arrays. 
+        left = [1]*len(nums)
+        right = [1]*len(nums)
         
-        results = []
-        # Traverse left array from left to right 
-        # Populate each element with left[i] = left[i-1]*nums[i-1]
+        # Iterate from left. 
         for i in range(1, len(nums)):
             left[i] = left[i-1] * nums[i-1]
         
-        # Traverse right array from right to left. 
-        # Populate each element with right[j] = right[j+1]*nums[j+1]
-        for j in range(len(nums)-2, -1, -1):
-            right[j] = right[j + 1] * nums[j + 1]
+        # Iterate from right.
+        for j in reversed(range(len(nums)-1)):
+            right[j] = right[j+1] * nums[j+1]
         
-        # Loop one last time, multiply each element in left with each element in right. 
+        # Multiply the left and right in place for nums array.
         for k in range(len(nums)):
-            results.append(left[k] * right[k])
+            nums[k] = left[k] * right[k]
             
-        return results
-
-
-# JAVA_HOME C:\jdk-13.0.1
-# PATH C:\jdk-13.0.1\bin
+        return nums
