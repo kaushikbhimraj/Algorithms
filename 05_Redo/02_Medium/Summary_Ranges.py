@@ -19,24 +19,27 @@ Explanation: 2,3,4 form a continuous range; 8,9 form a continuous range.
 # Non-duplicate values in array. 
 class Solution:
     def summaryRanges(self, nums: List[int]) -> List[str]:
-    	if not num:
-    		return 
-
-    	# Need two references, left and i. 
-    	# i can be a pointer that is increments each iteration. 
-    	# left holds a value at 0 initially and is incremented only when there is a mismatch. 
-    	results = []
-    	left = nums[0]
-    	i = 1
-
-    	while i < len(nums):
-    		
-    		if (nums[i] == nums[i-1]+1):
-    			results.append(str(left) + "->" + str(nums[i])) if left != nums[i-1] else results.append(str(left))
-    			left = nums[i]
-
-    		i += 1
-
-    	# Check and pdate results for last element. 
-    	results.append(str(left) + "->" + str(right)) if left != nums[i-1] else results.append(str(left))
-    	return results
+        if not nums:
+            return []
+        
+        # Two pointers, slow and fast. 
+        # Update the slow only when a break is found. 
+        results = []
+        start, i = 0, 0
+        
+        # Using a helper function to build string
+        while i < len(nums)-1:
+            if (nums[i] + 1 != nums[i + 1]):
+                results.append(self.helper(nums[start], nums[i]))
+                start = i + 1
+            i += 1
+        
+        # Make sure to capture the last value. 
+        results.append(self.helper(nums[start], nums[i]))
+        return results
+    
+    def helper(self, one, two):
+        if one == two:
+            return str(one)
+        else:
+            return str(one) + "->" + str(two)
