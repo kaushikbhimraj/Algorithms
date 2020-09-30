@@ -1,45 +1,46 @@
 """
-		[7 	1 	5 	3 	6	4]
+Say you have an array for which the ith element is the price of a given stock on day i.
 
-		[0	0	4	2	5	3]
+If you were only permitted to complete at most one transaction (i.e., buy one and sell 
+one share of the stock), design an algorithm to find the maximum profit.
 
-		state[i] = max(state[i-1] + prices[i] - prices[i-1], 0)
+Note that you cannot sell a stock before you buy one.
+
+Example 1:
+
+Input: [7,1,5,3,6,4]
+Output: 5
+Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
+             Not 7-1 = 6, as selling price needs to be larger than buying price.
+Example 2:
+
+Input: [7,6,4,3,1]
+Output: 0
+Explanation: In this case, no transaction is done, i.e. max profit = 0.
 """
 
+# Time:  O(n)
+# Space: O(1)
 class Solution:
-    def maxProfit(self, prices):
+    def maxProfit(self, prices: List[int]) -> int:
+        if not prices:
+            return 0
         
-        # Track minimum and difference of min and current price
-        # for every iteration
-        minprice = float("inf")
-        maxprofit = 0
+        # Basically thought of storing the value in a dp array. 
+        # Then optimized it to store value in a min variable. 
+        minValue = prices[0]
+        profit = 0
+        maxProfit = 0
         
-        for i in range(len(prices)):
+        # Min value is only update when prices[i] - minValue < 0. 
+        # Every iteration max profit is updated. 
+        for i in range(1, len(prices)):
             
-            # Update min and max profit
-            minprice = min(minprice, prices[i])
-            maxprofit = max(maxprofit, prices[i] - minprice)
-        
-        # MaxProfit will return the maximum profit. 
-        return maxprofit
-
-    def maxProfitDP(self, prices):
-
-    	# Store all max differences in one array. 
-    	dp = [0]*len(prices)
-
-    	# Store max of previous state and current difference in current state. 
-    	for i in range(1, len(prices)):
-    		dp[i] = max(dp[i-1] + prices[i] - prices[i-1], 0)
-
-    	# Return maxprofit
-    	return max(dp)
-
-
-
-
-a = [7,1,5,3,6,4]
-
-x = Solution()
-print(x.maxProfit(a))
-print(x.maxProfitDP(a))
+            profit = prices[i] - minValue
+            if profit < 0:
+                minValue = prices[i]
+            else:
+                maxProfit = max(profit, maxProfit)
+            
+        return maxProfit if maxProfit > 0 else 0
+            
