@@ -41,37 +41,33 @@ Constraints:
 1 <= weights[i] <= 500
 """
 
+
+# Time:  O(nlogn)
+# Space: O(1)
+
 class Solution:
     def shipWithinDays(self, weights: List[int], D: int) -> int:
-
-        # Primary trick is to find ship capacity of weights for D days 
-        # Have the binary serach implemented within (max(weights), sum(weights))
-        minVal, maxVal = max(weights), sum(weights)
-
-        # Binary Search (no overlap)
-        while minVal < maxVal:
-
-            mid = (minVal + maxVal)//2
-
-            # Motivations behind this iteration is to find the number of days it would take to 
-            # ship all the packages with mid as weightShippedPerDay. 
-            weightShippedPerDay, calculatedNumberofDays = 0, 1
-            for w in weights:
-                weightShippedPerDay += w
-                if weightShippedPerDay > mid:
-                    calculatedNumberofDays += 1
-                    weightShippedPerDay = w
-
-            # Compare and see calculatedNumberofDays > D days. 
-            # If so pull the pull maxVal to mid + 1
-            # else you store the value in mid 
+        # Binary search between max(weights) and sum(weights). 
+        # Find the capacity that can ship all weights within D days. 
+        minValue, maxValue = max(weights), sum(weights)
+        
+        # O(log(n)) where n exists in [max(weights), sum(weights)].
+        while minValue < maxValue:
+            capacity = (minValue + maxValue)//2
             
-            # Because this is a binary search, once calculatedNumberofDays <= D it will keep decreasing 
-            # is bound to find the minimum value.
-            if calculatedNumberofDays <= D:
-                maxVal = mid 
+            # O(n) -> where n is the number of weights. 
+            # Calculate number of days it would take to ship all weights for each capacity.
+            total, numOfDays = 0, 1
+            for w in weights:
+                total += w
+                if total > capacity:
+                    numOfDays += 1
+                    total = w
+            
+            # Updating minValue and maxValue can be a little tricky. 
+            if numOfDays > D:
+                minValue = capacity + 1
             else:
-                minVal = mid + 1
-
-        # Since we are looking for the smallest sum.
-        return minVal
+                maxValue = capacity
+            
+        return minValue
