@@ -1,0 +1,137 @@
+
+Following is the heap structure. The heaps are organized in a Max Heap fashion. 
+
+Intput of 9
+
+								9
+
+Input of 2
+
+								9
+
+						2
+
+
+Input of 1
+								9
+
+						2 				1
+
+Input of 4
+								9
+
+						4				1
+
+				2
+
+Input of 3
+								9
+
+						4				1
+
+					2		3
+
+Input of 5
+								9
+
+						4				5
+
+					2		3 		1
+
+Input of 7
+								9
+
+						4				7
+
+					2		3 		1 		5
+
+Input of 6
+								9
+
+						6				7
+
+					4		3 		1 		5
+				  2
+
+Input of 8
+								9
+
+						8				7
+
+					6		3 		1 		5
+				  2   4
+
+Input of 10
+								10
+
+						9				7
+
+					6		8 		1 		5
+				  2   4	  3
+
+
+Reorganize:
+
+Remove 10
+Add 3 from the last on the top
+
+								3
+
+						9				7
+
+					6		8 		1 		5
+				  2   4	  
+
+if 3 is less than 9 and 7
+then replace 3 with max(9,7)
+								9
+
+						3				7
+
+					6		8 		1 		5
+				  2   4	 
+
+if 3 is less than 6 and 8
+then replace with max(6,8)
+								9
+
+						8				7
+
+					6		3 		1 		5
+				  2   4	 
+
+Since there are no more children at this point. We can safely say the heap has been sorted and reorganized. 
+
+
+
+Logic in words:
+	
+	Step 1: 	Is to arrange a give array into a heap. 
+
+	Step 2: 	Replace the top value with the last element in the heap array. 
+
+	Step 3: 	Re-organize the heap. 
+					The part will require a little thought in logic. 
+					First element in python starts at index zero. 
+
+					Issue:
+					But the traversal in a heap follow (2n + 1 for left node and 2n + 2 for a right node)
+					There is an issue where the first node will ignore it left node as index is 0. 
+					This will throw off the entire heap struture. 
+
+					Solution:
+					start the node at n = 1
+					but when referencing the values using n-1, 2n-1, 2n
+					This way you are satisfying both concepts. 
+
+
+					Issue #2: 
+					There needs to be a way to handle the out of index issue
+
+					Solution:
+					So you will loop to the condition until 2n-1 < len(arr)
+					Then if the length of the array is even, there will be one value remaining still. 
+
+	Step 4: 	Using the reorganize the heap technique, remove the top element for all n elements and append
+				it to a new array. The resultant array will be a "HEAP" sorted array. 
+				
