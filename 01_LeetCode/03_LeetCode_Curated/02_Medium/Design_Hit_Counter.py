@@ -61,6 +61,9 @@ class HitCounter:
         Return the number of hits in the past 5 minutes.
         @param timestamp - The current timestamp (in seconds granularity).
         """
+        # You want the time period between the start and the current timestamp to always be 
+        # 300 seconds. So all the hits that occured outside that interval will have to be 
+        # deleted. 
         while self.hits and self.hits[0][0] <= timestamp - 300:
             self.counter -= self.hits.popleft()[1]
             
