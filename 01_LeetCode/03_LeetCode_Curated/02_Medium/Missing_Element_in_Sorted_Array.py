@@ -58,7 +58,7 @@ class Solution:
         # Case 1: If kth element is greater than all the missing elements. 
         # Then return last element + k - m, where m = all missing elements in array. 
         if k > missing(n):
-            return nums[-1] + k - missing (n)
+            return nums[-1] + k - missing(n)
         
         # Case 2: If kth element is less then missing elements.
         left = 0 
