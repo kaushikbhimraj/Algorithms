@@ -48,4 +48,28 @@ class Solution:
             idx += 1
         
         return nums[idx - 1] + k - missing(idx - 1)
+
+    def missingElementBinSearch(self, nums: List[int], k: int) -> int:
+        
+        # Forumla to calculate number of missing elements in the sorted array 
+        missing = lambda x: nums[x] - nums[0] - x
+        
+        n = len(nums) - 1
+        # Case 1: If kth element is greater than all the missing elements. 
+        # Then return last element + k - m, where m = all missing elements in array. 
+        if k > missing(n):
+            return nums[-1] + k - missing (n)
+        
+        # Case 2: If kth element is less then missing elements.
+        left = 0 
+        right = n 
+        while left != right:
+            mid = (left + right)//2
+            
+            if missing(mid) < k:
+                left = mid + 1
+            else:
+                right = mid
+        
+        return nums[left - 1] + k - missing(left - 1)
             
