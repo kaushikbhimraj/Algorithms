@@ -39,3 +39,9 @@ class Solution:
                 results[key] = [string]
             
         return results.values()
+
+
+# Similar:
+# Simplify Path
+# Max Points on a Line
+# Prison Cells After N Days
