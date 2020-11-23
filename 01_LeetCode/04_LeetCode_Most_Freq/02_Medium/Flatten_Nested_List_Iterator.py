@@ -41,23 +41,23 @@ Explanation: By calling next repeatedly until hasNext returns false,
 
 class NestedIterator:
     def __init__(self, nestedList: [NestedInteger]):
-        def flattenList(nestedlist):
-            for val in nestedlist:
+        # Create a fucntion in the constructor
+        def flat(array):
+            for val in array:
                 if val.isInteger():
-                    self.integer.append(val.getInteger())
+                    self.out.append(val.getInteger())
                 else:
-                    flattenList(val.getList())
-        self.integer = []
-        flattenList(nestedList)
-        self.position = -1
+                    flat(val.getList())
+        self.out = []
+        flat(nestedList)
+        self.pos = -1
     
     def next(self) -> int:
-        self.position += 1
-        return self.integer[self.position]
+        self.pos += 1
+        return self.out[self.pos]
     
     def hasNext(self) -> bool:
-        return self.position < len(self.integer) - 1
-         
+        return self.pos < len(self.out) - 1
 
 # Your NestedIterator object will be instantiated and called as such:
 # i, v = NestedIterator(nestedList), []
