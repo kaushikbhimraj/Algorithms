@@ -4,35 +4,32 @@ Your function should return true if the given graph contains at least one
 cycle, else return false.
 """
 
-# Graph vertex.
 class Node:
 	def __init__(self, val):
 		self.val = val
 		self.adj = []
 
-# Graph object.
+
 class Graph:
 	def __init__(self):
 		self.vertics = {}
-
-	def addNode(self, val):
-		node = Node(val)
-		if node.val not in self.vertics.keys():
-			self.vertics[node.val] = node
+	
+	def addVertex(self, val):
+		if val not in self.vertics.keys():
+			self.vertices[val] = Node(val)
 			return True
 		else:
 			return False
 
-	# Non directional
-	def addEdge(self, a, b):
-		if a.val not in self.vertics.keys() or b.val not in self.vertics.keys():
+	def addEdge(self, g1, g2):
+		if g1.val not in self.vertics.keys() or g2.val not in self.vertics.keys():
 			return False
-		else:
-			a.adj.append(b)
-			b.adj.append(a)
-			return True
+		g1.adj.append(g2)
+		g2.adj.append(g1)
+		return True
 
-# DFS Cycle detection. 
+
+# DFS Cycle Detection.
 class Cycle:
 	def __init__(self):
 		self.isCycle = False
@@ -52,6 +49,37 @@ class Cycle:
 				self.dfs(graph, vertex, w, marked)
 			elif (w.val == parent.val):
 				self.isCycle = True
+
+# Union-Find 
+class disjointSet:
+	def __init__(self):
+		self.parent = {}
+
+	def makeSet(self, N):
+		self.parent = {i:i for i in range(N+1)}
+
+	def find(self, val):
+		if self.parent[val] ==  val:
+			return val
+		else:
+			self.find(self.parent[va])
+
+	def union(self, x, y):
+		self.parent[x] = y
+
+# Union-Find Cycle Detection.
+def findCycle(self, g, N):
+	ds = disjointSet()
+	ds.makeSet(N)
+	for u in g.vertics:
+		for v in u.adj:
+			x = ds.find(u.val)
+			y = ds.find(v.val)
+			if x == y:
+				return True
+			else:
+				ds.union(x, y)
+	return False
 
 # Unit Test
 G = Graph()
