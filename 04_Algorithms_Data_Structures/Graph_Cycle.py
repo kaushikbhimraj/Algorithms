@@ -4,19 +4,20 @@ Your function should return true if the given graph contains at least one
 cycle, else return false.
 """
 
-class Node:
+# Node in graph. 
+class Vertex:
 	def __init__(self, val):
 		self.val = val
 		self.adj = []
 
-
+# Basic graph object.
 class Graph:
-	def __init__(self):
+	def __init__(self, val):
 		self.vertics = {}
-	
-	def addVertex(self, val):
+
+	def addNode(self, val):
 		if val not in self.vertics.keys():
-			self.vertices[val] = Node(val)
+			self.vertics[val] = Vertex(val)
 			return True
 		else:
 			return False
@@ -28,57 +29,34 @@ class Graph:
 		g2.adj.append(g1)
 		return True
 
-
-# DFS Cycle Detection.
-class Cycle:
-	def __init__(self):
-		self.isCycle = False
-
-	# Using helper function to run the DFS. 
-	def checkDAG(self, graph):
-		marked = {v:False for v in graph.vertics.keys()}
-		for vertex in graph.vertics.keys():
-			if graph.vertics[vertex] not in marked:
-				self.dfs(graph, Node(-1), graph.vertics[vertex], marked)
-		return self.isCycle
-
-	def dfs(self, graph, parent, vertex, marked):
-		marked[vertex.val] = True
-		for w in graph.vertics[vertex.val].adj:
-			if not marked[w.val]:
-				self.dfs(graph, vertex, w, marked)
-			elif (w.val == parent.val):
-				self.isCycle = True
-
-# Union-Find 
-class disjointSet:
+# Union-Find
+class disJointSet:
 	def __init__(self):
 		self.parent = {}
 
-	def makeSet(self, N):
-		self.parent = {i:i for i in range(N+1)}
+	def makeSet(self, vertics):
+		self.parent = {vertex:vertex for vertex in vertics}
 
-	def find(self, val):
-		if self.parent[val] ==  val:
-			return val
-		else:
-			self.find(self.parent[va])
+	def find(self, x):
+		if self.parent[x] == x:
+			return x
+		self.find(self.parent[x])
 
-	def union(self, x, y):
-		self.parent[x] = y
+	def union(self, a, b):
+		self.parent[a] = b
 
-# Union-Find Cycle Detection.
-def findCycle(self, g, N):
-	ds = disjointSet()
-	ds.makeSet(N)
-	for u in g.vertics:
-		for v in u.adj:
-			x = ds.find(u.val)
-			y = ds.find(v.val)
-			if x == y:
-				return True
-			else:
+# Union-Find Cycle Detection
+def findCycle(graph, n):
+	ds = disJointSet()
+	ds.makeSet(graph.vertics.keys())
+	for vertex in graph.vertics.keys():
+		for neighbor in graph.vertics[vertex].adj:
+			x = ds.find(vertex.val)
+			y = ds.find(neighbor.val)
+			if x != y:
 				ds.union(x, y)
+			else:
+				return True
 	return False
 
 # Unit Test
