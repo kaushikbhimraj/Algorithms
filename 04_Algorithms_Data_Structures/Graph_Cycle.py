@@ -3,13 +3,13 @@ Given an undirected graph, check whether the graph contains a cycle or not.
 Your function should return true if the given graph contains at least one 
 cycle, else return false.
 """
-# Standard graph node (undirected)
+# Standard graph node
 class Node:
 	def __init__(self, val):
 		self.val = val
 		self.adj = []
 
-# Standard Graph
+# Standard Graph (UNDIRECTED)
 class Graph:
 	def __init__(self):
 		self.vertics = {}
