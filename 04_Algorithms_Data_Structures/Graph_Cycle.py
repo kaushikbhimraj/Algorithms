@@ -42,7 +42,7 @@ class disJointSet:
 		if (self.parent[x] == x):
 			return self.parent[x]
 		else:
-			self.find(self.parent[x])
+			return self.find(self.parent[x])
 
 	def union(self, a, b):
 		self.parent[x] = y
