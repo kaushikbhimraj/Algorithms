@@ -31,7 +31,7 @@ class TopologicalSort:
 	# return them accordingly across the recursive stack. 
 	def topSort(self, g):
 		stack = []
-		visited = {}
+		visited = set()
 
 		for vertex in g.vertics.values():
 			if vertex.val in visited:
@@ -49,7 +49,7 @@ class TopologicalSort:
 		return stack
 
 	def dfs(self, vertex, stack, visited):
-		visited[vertex.val] = vertex.val
+		visited.add(vertex.val)
 		for child in vertex.adj:
 			if child.val in visited:
 				continue
