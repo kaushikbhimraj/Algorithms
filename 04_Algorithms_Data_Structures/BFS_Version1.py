@@ -19,32 +19,33 @@ class Node:
         return True
         
 class Graph:
-    allNodes = {}
+    def __init__(self):
+        self.allNodes = {}
     
     def add_Vertex(self,obj) -> bool:
         if isinstance(Node, obj):
             try:
-                allNodes[obj.name]
+                self.allNodes[obj.name]
                 return False
             except KeyError:
-                allNodes[obj.name] = obj
+                self.allNodes[obj.name] = obj
                 return True
     
     def add_edge(self, obj1, obj2) -> bool:
         if isinstance(Node, obj1) and isinstance(Node, obj2):
             
             try:
-                allNodes[obj1.name]
+                self.allNodes[obj1.name]
                 obj1.add_neighbor(obj2)
             except KeyError:
-                allNodes[obj1.name] = obj1
+                self.allNodes[obj1.name] = obj1
                 obj1.add_neighbor(obj2)
             
             try:
-                allNodes[obj2.name]
+                self.allNodes[obj2.name]
                 obj2.add_neighbor(obj1)
             except KeyError:
-                allNodes[obj2.name] = obj2
+                self.allNodes[obj2.name] = obj2
                 obj2.add_neighbor(obj1)
             
             return True
