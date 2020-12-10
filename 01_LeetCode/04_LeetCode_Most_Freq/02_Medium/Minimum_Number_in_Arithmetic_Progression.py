@@ -21,6 +21,17 @@ Constraints:
 0 <= arr[i] <= 10^5
 """
 
+
+# Since given array will always be sorted binary search can be used. 
+# Using the formula of arithmetic progression, we can find the value at the nth position of 
+# the sequence (a + n(d))
+# where, a is arr[0]
+#        n is mid = (low + high)/2
+#        d is (arr[-1] - arr[0])/len(arr), d is the value at the nth location of sequence. 
+
+# LOGIC:
+# If value at mid == value at (a + n(d)), then we know that all numbers in sequence are present
+# till the nth location. So we look to the right. Else look to the left. 
 class Solution:
 	def missingNumber(self, arr: List[int]) -> int:
 		left, right = 0, len(arr)-1
