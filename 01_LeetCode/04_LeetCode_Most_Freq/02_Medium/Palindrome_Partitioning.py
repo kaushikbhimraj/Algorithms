@@ -24,21 +24,26 @@ s contains only lowercase English letters.
 
 # T: O(N.2^N) where N is length of string. 
 # S: O(N)
+
 class Solution:
     def partition(self, s: str) -> List[List[str]]:
         res = []
         self.dfs(s, [], res)
         return res
     
+    # Helper function to run DFS
     def dfs(self, s, curr, res):
         if not s:
             res.append(curr[:])
             return 
         
+        # if we start from 0, recursion stack will exceed memory 
+        # as pointer will always stay at zero. 
         for i in range(1, len(s)+1):
             if self.isPalindrome(s[:i]):
                 self.dfs(s[i:], curr+[s[:i]], res)
     
+    # Standard check for palindrome
     def isPalindrome(self, s):
         low, high = 0, len(s)-1
         while low < high:
