@@ -28,6 +28,24 @@ Constraints:
 """
 
 class Solution:
+	# T: O(log(n)) and S: O(log(n))
+    def isHappy(self, n: int) -> bool:
+        
+        def happySum(number):
+            curr = 0
+            while number > 0:
+                number, digit = number//10, number%10
+                curr += digit ** 2
+            return curr
+        
+        seen = set()
+        while n != 1 and n not in seen:
+            seen.add(n)
+            n = happySum(n)
+        
+        return n == 1	
+
+	# Optimized -> T: O(log(n)) and S: O(1)
 	def isHappy(self, n: int) -> bool:
 
 		# Create a nested function to get the sum of squares of digits in the int. 
