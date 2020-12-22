@@ -63,7 +63,7 @@ class Solution:
         mem[temp] = max(self.findMax(points[1:], k-1, tot+points[0], mem), self.findMax(points[:-1], k-1, tot+points[-1], mem))
         return mem[temp]
 
-    # Sliding window problem. 
+    # Sliding window 
     def maxScore(self, cardPoints: List[int], k: int) -> int:
         left = 0
         right = len(cardPoints) - k
