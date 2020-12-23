@@ -64,14 +64,13 @@ class Solution:
         return mem[temp]
 
     # Sliding window 
+    # Logic:
+    # Take the sum of the first k elements. 
+    # Add an element from the last and take the first element out.(line 73)
+    # While doing this, choose the greatest sum. 
     def maxScore(self, cardPoints: List[int], k: int) -> int:
-        left = 0
-        right = len(cardPoints) - k
-        total = sum(cardPoints[right:])
-        best = total
-        for _ in range(k):
-            total += cardPoints[left] - cardPoints[right]
-            best = max(best, total)
-            left += 1
-            right += 1
-        return best 
+        res = total = sum(cardPoints[:k])
+        for i in range(1, k+1):
+            total += cardPoints[-i] - cardPoints[k-i]
+            res = max(res, total)
+        return res
