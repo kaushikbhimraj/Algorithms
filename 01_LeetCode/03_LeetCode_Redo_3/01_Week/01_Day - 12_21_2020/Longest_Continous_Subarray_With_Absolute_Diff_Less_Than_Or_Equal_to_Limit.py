@@ -55,13 +55,7 @@ class Solution:
                 
         return count
                 
-    
+    # Helper function to find the min and max in sub array.
+    # Create a heap and pop first element 
     def helper(self, arr):
-        mx = mn = arr[0]
-        for i in range(1, len(arr)):
-            if mn > arr[i]:
-                mn = arr[i]
-            if mx < arr[i]:
-                mx = arr[i]
-            
-        return mx, mn
+        return max(arr) - min(arr)
