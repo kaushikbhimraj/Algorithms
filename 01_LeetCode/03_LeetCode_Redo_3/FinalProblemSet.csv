@@ -1,8 +1,8 @@
-Rank,#,Title,Topics,"Rank, ",Difficulty,Time & Space,Status,Next,,,,
+e,#,Title,Topics,"Rank, ",Difficulty,Time & Space,Status,Next,,,,
 1,1,Two Sum,"Array, Hash Table, ","G20, AMZ19, MIC21, APP04, ",Easy,O(n),Complete,4Sum, Two Summ III – Data Structure Design, Two Sum iV – Input is a BST, Two Sum Less Than K, Max Number of K-Sum Pairs
 2,146,LRU Cache,"Design, ","AMZ05, FB45, MIC01, APP01, ",Medium,O(1),Complete,LFU Cache; Design In-Memory File System; Design Compressed String Iterator,,,,
 3,200,Number of Islands,Depth-First Search,"AMZ03, FB75, MIC04, APP09, ",Medium,O(row x col),Complete,Surrounded Regions; Wall and Gates; Number of Islands II,,,,
-4,2,Add Two Numbers,"Linked List, Math, ","AMZ50, MIC24, APP16, ",Medium,,,,,,,
+4,2,Add Two Numbers,"Linked List, Math, ","AMZ50, MIC24, APP16, ",Medium,"O(max(m,n))",Complete,Multiply Strings; Sum of Two Integers; Add Strings; Add Two Numbers II; Add to Array-Form to Integer; Add Two Polynomials Represented as Linked Lists,,,,
 5,91,Decode Ways,"String, Dynamic Programming, ","MIC92, ",Medium,,,,,,,
 6,56,Merge Intervals,"Array, Sort, ","G42, AMZ31, FB29, MIC78, APP22, ",Medium,,,,,,,
 7,5,Longest Palindromic Substring,"String, Dynamic Programming, ","AMZ27, MIC11, APP69, ",Medium,,,,,,,
