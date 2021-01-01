@@ -71,13 +71,20 @@ Answers within 10-5 of the actual value will be accepted as correct.
 
 class UndergroundSystem:
 
+	# Dictionaries to keep track of start and end stations and times for the users. 
+	# Dictionaries to keep track of average times for the routes taken by the users.
     def __init__(self):
         self.users = {}
         self.routes = {}
 
+    # Create a new record of the user while checking in. 
+    # If prior data exists, simply overwrite it. 
     def checkIn(self, id: int, stationName: str, t: int) -> None:
         self.users[id] = [stationName, "", t, 0]
 
+    # Check outs are always done after a check in.  
+    # Use the self.users map to add the check out station name and time. 
+    # Add the users delta time to the self.routes. 
     def checkOut(self, id: int, stationName: str, t: int) -> None:
         self.users[id][1] = stationName
         self.users[id][3] = t
@@ -88,6 +95,7 @@ class UndergroundSystem:
         else:
             self.routes[(startStation, stationName)] = [[id, t-startTime]]
 
+    # Calculate the average time based on the startStation and endStation routes. 
     def getAverageTime(self, startStation: str, endStation: str) -> float:
         avgTimes = self.routes[(startStation, endStation)]
         res = 0
