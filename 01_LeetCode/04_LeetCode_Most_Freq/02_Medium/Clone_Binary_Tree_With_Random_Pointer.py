@@ -72,3 +72,12 @@ class Solution:
     	node.random = self.copyRandomBinaryTree(root.random)
 
     	return node
+
+
+"""
+[5,2,6,1,3]
+[5,2,1,3,6]
+[65, 63, 60, 57, 42, 34, 58, 3, 5, 8, 10]
+[]
+[1]
+"""
