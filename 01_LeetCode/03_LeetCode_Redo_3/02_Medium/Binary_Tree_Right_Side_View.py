@@ -36,3 +36,28 @@ class Solution:
 
         self.helper(root.right, res, level+1)
         self.helper(root.left, res, level+1)
+
+    # Using BST, you want to add to a result array only the last element on each
+    # level of the tree.
+    def rightSideView1(self, root: TreeNode) -> List[int]:
+        queue = []
+        queue.append(root.val)
+        res = []
+
+        # While searching nodes only add the last node in each level.
+        while  queue:
+            n = len(queue)
+
+            for i in range(n):
+                node = queue.pop(0)
+
+                # Only add last element at the level to res.
+                if (i == n - 1):
+                    res.append(node.val)
+
+                # Add child nodes to queue
+                if (node.left):
+                    queue.append(node.left)
+                if (node.right):
+                    queue.append(node.right)
+        return res
