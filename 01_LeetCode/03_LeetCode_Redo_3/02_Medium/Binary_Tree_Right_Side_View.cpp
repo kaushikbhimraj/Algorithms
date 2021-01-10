@@ -21,6 +21,8 @@ public:
         std::queue<TreeNode*> todo;
         todo.push(root);
 
+        // Pop all elements in queue that are from a certain level. 
+        // Add only the last element to the output array . 
         while (!todo.empty()){
             int n = todo.size();
 
