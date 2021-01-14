@@ -1,0 +1,10 @@
+
+
+Problems to revist. 
+
+	1. random pick with weight
+	2. time value key-value store
+	3. string compression
+	4. number of provinces
+
+	
