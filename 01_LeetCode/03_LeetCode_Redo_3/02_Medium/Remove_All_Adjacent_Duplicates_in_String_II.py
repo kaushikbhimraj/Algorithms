@@ -58,4 +58,4 @@ class Solution:
         res = ""
         for char, count in stack:
             res += (char * count)
-        return res        
+        return res
