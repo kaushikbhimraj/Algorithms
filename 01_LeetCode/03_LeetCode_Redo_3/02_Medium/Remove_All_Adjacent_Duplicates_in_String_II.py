@@ -38,3 +38,24 @@ class Solution:
             prev = s
             s = helper(s)
         return s
+
+    # Using the stack, we load the character in string, if the next string is the same simply count up
+    # Else add the value with count to string. 
+    # When the count is == k, then pop the top value in array. 
+    # Returnt the stack and then use the left over characters and their counts to be concatenated to the 
+    # new string and return it. 
+    def removeDuplicates(self, s: str, k: int) -> str:
+        stack = [[s[0], 1]]
+        
+        for i in range(1, len(s)):
+            if (not stack or s[i] != stack[-1][0]):
+                stack.append([s[i], 1])
+            else:
+                stack[-1][1] += 1
+                if (stack[-1][1] == k):
+                    stack.pop()
+        
+        res = ""
+        for char, count in stack:
+            res += (char * count)
+        return res        
