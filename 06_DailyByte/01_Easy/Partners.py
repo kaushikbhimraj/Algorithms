@@ -11,7 +11,11 @@ nums = [5, 5, 3, 1, 1, 3, 3], return 5.
 3 (index 2) and 3 (index 5) are partners.
 3 (index 2) and 3 (index 6) are partners.
 3 (index 5) and 3 (index 6) are partners.
+
+T: O(n); S: O(n) where n is length of nums
 """
+
+from collections import defaultdict
 
 class Solution:
 	def Partners(self, nums):
