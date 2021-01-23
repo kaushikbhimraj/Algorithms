@@ -51,4 +51,4 @@ class Solution:
             res.append(word)
             k -= 1
         
-        return res
+        return respectively
