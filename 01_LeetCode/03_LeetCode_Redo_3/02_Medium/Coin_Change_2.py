@@ -27,6 +27,7 @@ Output: 1
 
 class Solution:
     def change(self, amount: int, coins: List[int]) -> int:
+        count = 0
         return self.helper(coins, amount, 0)
     
     def helper(self, coins, amount, curr):
@@ -37,6 +38,13 @@ class Solution:
             return 0
         
         combos = 0
-        for coin in range(curr, len(coins)):
-            combos += self.helper(coins, amount - coins[coin], coin)
+        for i in range(curr, len(coins)):
+            combos += self.helper(coins, amount - coins[i], i)
+            
         return combos
+
+
+class Solution:
+    def change(self, amount: int, coins: List[int]) -> int:
+        count = 0
+        
