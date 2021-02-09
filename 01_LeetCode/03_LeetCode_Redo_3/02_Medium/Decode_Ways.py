@@ -40,25 +40,21 @@ class Solution:
         self.memo = {}
         
     def numDecodings(self, s: str) -> int:
-        if not s:
-            return 0
-        return self.counter(0, s)
+        return self.helper(0, s)
     
-    def counter(self, index, s):
-        if index == len(s):
-            return 1
-    
-        if s[index] == "0":
-            return 0
-        if index == len(s) - 1:
+    def helper(self, i, s):
+        if (i == len(s)):
             return 1
         
-        ans = self.counter(index+1, s) + (self.counter(index+2, s) if int(s[index:index+2]) <= 26 else 0)
-        self.memo[index] = ans
+        if (s[i] == "0"):
+            return 0
         
-        return ans
-
-x = Solution()
-print(x.numDecodings("12"))
-print(x.numDecodings("226"))
-print(x.numDecodings("121234"))
+        if (i == len(s) - 1):
+            return 1
+        
+        if (i in self.memo):
+            return self.memo[i]
+        
+        self.memo[i] = self.helper(i+1, s) + (self.helper(i+2, s) if (int(s[i:i+2]) <= 26) else 0)
+        return self.memo[i]
+        

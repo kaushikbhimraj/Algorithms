@@ -5,79 +5,91 @@
 # GET => if value is in list, return it and bring it to the start of the list. 
 # PUT => if new value is put into list, it needs to be on top of the list. 
 
-
-class Linked:
+class Node:
     def __init__(self):
-        self.key = 0 
-        self.value = 0
+        self.key = -1
+        self.val = -1
         self.prev = None
         self.next = None
 
 class LRUCache:
-    # current node - previous value should be set to head.
-    #              - next value should be set to head.next. 
-    # head node    - next value should be set to current node. 
-    #              - head.next.previous value should be set to current node. 
-    def _add_node(self, node):
-        node.prev = self.head
+    def __init__(self, capacity: int):
+        self.cap = capacity
+        self.map = {}
+        self.size = 0
+        self.head = Node()
+        self.tail = Node()
+        self.head.next = self.tail
+        self.tail.prev = self.head
+    
+    # Insert new node b/w head node and its next node. 
+    # Point newNode.next to head's next node. 
+    # Make head.next.prev point back to new node. 
+    # Then point head.next to newNode.
+    # Finally point newNode.prev to head
+    def add_top(self, node):
         node.next = self.head.next
         self.head.next.prev = node
         self.head.next = node
+        node.prev = self.head
     
-    # Would have to make the connetion between current node's previous value and
-    # its next value. 
-    def _remove_node(self, node):
-        prev = node.prev
-        new = node.next
-        prev.next = new
-        new.prev = prev
-
-    # This function is used to move which node is used to the top the list. 
-    def _move_to_head(self, node):
-        self._remove_node(node)
-        self._add_node(node)
+    # Point node's prev to node's next
+    # Point node's next.prev to prev
+    def pop_node(self, node):
+        prevNode = node.prev
+        prevNode.next = node.next
+        node.next.prev = prevNode
     
-    # Why?
-    def _pop_tail(self):
-        res = self.tail.prev
-        self._remove_node(res)
-        return res
-
-    def __init__(self, capacity):
-        self.head, self.tail = Linked(), Linked()
-        self.size = 0
-        self.capacity = capacity
-        self.cache = {}
-
-        self.head.next = self.tail
-        self.tail.prev = self.head
-
-    # Simply fetch the value from dictionary, move to top of linkedlist and return value in node.
-    def get(self, key):
-        if key not in self.cache:
-            return -1
-        self._move_to_head(key)
-        return self.cache[key].value
+    # Avoids repetition
+    def move_top(self, node):
+        self.pop_node(node)
+        self.add_top(node)    
     
-    # Create a new node and add it to list and dictionary. 
-    def put(self, key, value):
-        node = self.cache.get(key, None)
-        if not node:
-            newNode = Linked()
-            newNode.key = key
-            newNode.value = value
-
-            # Build the prev and next values by adding it to the linked list. 
-            # Then add it the dictionary.
-            self._add_node(newNode)
-            self.cache[newNode]
-            self.size += 1
-
-            # Check and maintain the cache within the limit. 
-            if self.size > self.capacity:
-                tail = self._pop_tail()
-                del self.cache[tail.key]
-                self.size -= 1
+    # Remove node before tail and return that node. 
+    def remove_tail(self):
+        prev = self.tail.prev
+        self.pop_node(prev)
+        return prev
+    
+    def get(self, key: int) -> int:
+        if (key in self.map):
+            self.move_top(self.map[key])
+            return self.map[key].val
+        
         else:
-            node.value = value
-            self._move_to_head(node)
+            return -1
+    
+    # CASE 1: STEP 1:
+    # Check if key exists in dictionary. 
+    # If not, create a new node and add it to dictionary. 
+    # Only then add node to top and increment size.
+    # CASE 1: STEP 2:
+    # Check size > capacity
+    # If so, remove tail node and then remove from dictionary.
+    # CASE 2: STEP 1:
+    # If node already exists, simply update the value for that node
+    # Move node to top. 
+    def put(self, key: int, value: int) -> None:
+        node = self.map.get(key, None)
+        
+        if not node:
+            newNode = Node()
+            newNode.key = key
+            newNode.val = value
+            self.map[key] = newNode
+            self.add_top(newNode)
+            self.size += 1
+            
+            if (self.size > self.cap):
+                node = self.remove_tail()
+                del self.map[node.key]
+                self.size -= 1
+                
+        else:
+            node.val = value
+            self.move_top(node)
+
+# Your LRUCache object will be instantiated and called as such:
+# obj = LRUCache(capacity)
+# param_1 = obj.get(key)
+# obj.put(key,value)
