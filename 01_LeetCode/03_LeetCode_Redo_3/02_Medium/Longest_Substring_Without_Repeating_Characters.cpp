@@ -4,7 +4,7 @@
 
 class Solution {
 public:
-    int lengthOfLongestSubstring(string s) {
+    int lengthOfLongestSubstring(std::string s) {
         if (s.length() == 0) return 0;
         std::map<char, int>locations;
         std::map<char, int>::iterator val;
