@@ -20,18 +20,21 @@ The input string length won't exceed 1000.
 
 class Solution:
     def countSubstrings(self, s: str) -> int:
-        dp = [[0]*len(s) for _ in range(len(s))]
+        dp = [[0] * len(s) for _ in range(len(s))]
         ans = 0
         for i in range(len(s)):
             dp[i][i] = 1
             ans += 1
         
-        for col in range(len(dp[0])):
-            for row in range(0, col):
-                if (col-row==1 and s[row] == s[col]):
-                    dp[row][col] = 1
+        # Populate the DP array by checking the conditions on the input array. 
+        # Key for using a DP array is to check for previous value and not doing repetitive work. 
+        # Here we are going from left to right column and traversing each column top to bottom. 
+        for j in range(len(dp[0])):
+            for i in range(0, j):
+                if (j-i == 1 and s[i] == s[j]):
+                    dp[i][j] = 1
                     ans += 1
-                elif (row+1 < len(dp) and dp[row+1][col-1] == 1 and s[row] == s[col]):
-                    dp[row][col] = 1
+                elif (i+1 < len(s) and dp[i+1][j-1] == 1 and s[i] == s[j]):
+                    dp[i][j] = 1
                     ans += 1
         return ans
