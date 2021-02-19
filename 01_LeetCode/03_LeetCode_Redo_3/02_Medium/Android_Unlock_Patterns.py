@@ -29,6 +29,8 @@ Two unlock patterns are considered unique if there is a dot in one sequence that
 or the order of the dots is different.
 """
 
+# T: O(n!); S: O(n) wheren is maximum pattern length. 
+
 class Solution:
     def numberOfPatterns(self, m: int, n: int) -> int:
         
