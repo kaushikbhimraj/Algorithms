@@ -13,6 +13,7 @@ Output: 2
 
 Explanation: From the root of the tree, we move one coin to its left child, and one coin to its right child.
 """
+# T: O(n); S: O(k) where n is number of coins, k is maximum depth of tree.
 
 # Definition for a binary tree node.
 # class TreeNode:
@@ -23,9 +24,9 @@ Explanation: From the root of the tree, we move one coin to its left child, and 
 
 class Solution:
     def distributeCoins(self, root: TreeNode) -> int:
-        self.temp = 0
+        self.moves = 0
         self.dfs(root)
-        return self.temp
+        return self.moves
     
     def dfs(self, root):
         if not root:
@@ -34,5 +35,5 @@ class Solution:
         left = self.dfs(root.left)
         right = self.dfs(root.right)
         
-        self.temp += abs(left) + abs(right)
+        self.moves += abs(left) + abs(right)
         return root.val + left + right - 1
