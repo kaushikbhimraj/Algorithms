@@ -46,6 +46,7 @@ class Solution:
         self.ways = {}
         return self.helper_memo(nums, 0, 0, S)
     
+    # Memoization is implemented using hash maps where the (running sum, index) together become the key and value is the count. 
     def helper_memoization(self, nums, i, rsum, tar):
         if (i == len(nums)):
             if (rsum == tar):
