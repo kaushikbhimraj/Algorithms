@@ -45,23 +45,21 @@ class Solution:
 
         return head
 
+    # Check if head and its next nodes exist. 
+    # Store the first node in first
+    # Store the second node in second
+    # Then use the recursion fucntion to store the second.next in first.next
+    # After the recursion stack in on the return second.next = first
+    # The last step is essential. 
+    
     def swapPairs(self, head: ListNode) -> ListNode:
-        """
-        :type head: ListNode
-        :rtype: ListNode
-        """
-
-        # If the list has no node or has only one node left.
-        if not head or not head.next:
+        if (not head or not head.next):
             return head
-
-        # Nodes to be swapped
-        first_node = head
-        second_node = head.next
-
-        # Swapping
-        first_node.next  = self.swapPairs(second_node.next)
-        second_node.next = first_node
-
-        # Now the head is the second node
-        return second_node        
+        
+        first = head
+        second = head.next
+        
+        first.next = self.swapPairs(second.next)
+        second.next = first
+        
+        return second
