@@ -30,18 +30,37 @@ Output: ["1.0.10.23","1.0.102.3","10.1.0.23","10.10.2.3","101.0.2.3"]
 Constraints:
 0 <= s.length <= 3000
 """
+
 class Solution:
     def restoreIpAddresses(self, s: str) -> List[str]:
+        
+        # Check if given string is between size 4 and 12. 
         if not (4 <= len(s) <= 12):
             return []
         
+        # Helper function is used to backtrack. 
+        # Params: pointer(idx), running array(curr)
+        # Terminal condition:
+        #         a. Check if length the running array is 4. 
+        #              a-1. Check if pointer is at end of string s. (If so, add the current array to result)
+        # Recursive condition:
+        #         a. Try with substring of length 1, 2 & 3 (based on pointer: pointer+1,... pointer+3)
+        #         b. If a substring is starting with '0' and its length is greater than 1, skip!
+        #         c. Only when substring is between integer value 0 and 255, continue recursion
+        #               Append the current substring to current array
+        #               Use the loop index+1 as pointer in recursion.
+        #               Note: Make sure to pop off the value after the recursion stack is popped.
+        # Return the result array. 
+        
         def helper(idx, curr):
+            # Terminal condition
             if (len(curr) == 4):
                 nonlocal res
                 if (idx == len(s)):
                     res.append(".".join(curr))
                 return
             
+            # Recursion condition
             num = ''
             for i in range(idx, min(idx + 3, len(s))):
                 num += s[i]
