@@ -19,35 +19,45 @@ n == board[i].length
 board[i][j] is 'X' or 'O'.
 """
 class Solution:
-    def solve(self, board: List[List[str]]) -> None:
+    # Only focus on 'O's along the border and move inwards.
+    # When come across an 'O' change it to 'E'. 
+    # After DFS, convert all left over 'O's to 'X' (these are still trapped :(
+    # Change 'E' to 'O'
+    # Viola!
+    def solve_2(self, board: List[List[str]]) -> None:
         """
         Do not return anything, modify board in-place instead.
         """
-        def path(i, j):
-            if (i < 0 or i > len(board)-1 or j < 0 or j > len(board[0])-1):
-                return 1
+        def dfs(r,c):
+            if (r < 0 or r >= m or c < 0 or c >= n):
+                return
             
-            if ((i,j) in visited):
-                return 0
+            if (board[r][c] != "O"):
+                return
             
-            if (board[i][j] == "X"):
-                return 0
+            board[r][c] = "E"
             
-            if ((i == 0 or i == len(board)-1 or j == 0 or j == len(board[0])-1) and board[i][j] == "O"):
-                return 1
+            for x,y in [(0,-1),(0,1),(1,0),(-1,0)]:
+                dfs(r+x,c+y)
             
-            around = [(-1,0),(1,0),(0,-1),(0,1)]
-            neigh = 0
-            for x, y in around:
-                visited.add((i,j))
-                neigh |= path(i+x, j+y)
-                visited.remove((i,j))
-                board[i][j] = "X" if not neigh else "O"
-            return neigh
+        m = len(board)
+        n = len(board[0])
+        for i in range(m):
+            if board[i][0] == "O":
+                dfs(i,0)
+            if board[i][n-1] == "O":
+                dfs(i,n-1)
             
-        neigh = 0
-        visited = set()
+        for j in range(n):
+            if board[0][j] == "O":
+                dfs(0,j)
+            if board[m-1][j] == "O":
+                dfs(m-1,j)
+            
         for i in range(len(board)):
             for j in range(len(board[0])):
                 if (board[i][j] == "O"):
-                    path(i,j)
+                    board[i][j] = "X"
+                elif (board[i][j] == "E"):
+                    board[i][j] = "O"
+            
