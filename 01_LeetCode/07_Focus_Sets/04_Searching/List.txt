@@ -1,0 +1,33 @@
+Repeat: 16
+
+981.  Time Based Key-Value Store
+033.  Search in Rotated Sorted Array
+287.  Find the Duplicate Number
+050.  Pow(x, n)
+1283. Find the Smallest Divisor Given a Threshold
+300.  Longest Increasing Subsequence
+209.  Minimum Size Subarray Sum
+034.  Find First and Last Position of Element in Sorted Array
+074.  Search a 2D Matrix
+162.  Find Peak Element
+1011. Capacity To Ship Packages Within D Days
+153.  Find Minimum in Rotated Sorted Array
+222.  Count Complete Tree Nodes
+1060. Missing Element in Sorted Array
+230.  Kth Smallest Element in a BST
+1198. Find Smallest Common Element in All Rows
+
+
+To-Do: 11
+
+528.  Random Pick with Weight
+718.  Maximum Length of Repeated Subarray
+378.  Kth Smallest Element in a Sorted Matrix
+540.  Single Element in a Sorted Array
+658.  Find K Closest Elements
+454.  4Sum II
+029.  Divide Two Integers
+240.  Search a 2D Matrix II
+1631. Path With Minimum Effort
+1574. Shortest Subarray to be Removed to Make Array Sorted
+1642. Furthest Building You Can Reach

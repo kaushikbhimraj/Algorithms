@@ -1,0 +1,43 @@
+Repeat: 6
+
+332.  Reconstruct Itinerary
+210.  Course Schedule II
+207.  Course Schedule
+323.  Number of Connected Components in an Undirected Graph
+261.  Graph Valid Tree
+1135. Connecting Cities With Minimum Cost
+
+To-Do: 32
+
+399.  Evaluate Division
+133.  Clone Graph
+797.  All Paths From Source to Target
+1631. Path With Minimum Effort
+1334. Find the City With the Smallest Number of Neighbors at a Threshold Distance
+743.  Network Delay Time
+684.  Redundant Connection
+841.  Keys and Rooms
+1615. Maximal Network Rank
+1361. Validate Binary Tree Nodes
+1102. Path With Maximum Minimum Value
+1042. Flower Planting With No Adjacent
+959.  Regions Cut By Slashes
+310.  Minimum Height Trees
+886.  Possible Bipartition
+1162. As Far from Land as Possible
+1136. Parallel Courses
+444.  Sequence Reconstruction
+1514. Path with Maximum Probability
+1557. Minimum Number of Vertices to Reach All Nodes
+1059. All Paths from Source Lead to Destination
+1778. Shortest Path in a Hidden Grid
+1129. Shortest Path with Alternating Colors
+802.  Find Eventual Safe States
+1267. Count Servers that Communicate
+1387. Sort Integers by The Power Value
+1730. Shortest Path to Get Food
+1462. Course Schedule IV
+990.  Satisfiability of Equality Equations
+1786. Number of Restricted Paths From First to Last Node
+1791. Find Center of Star Graph
+1765. Map of Highest Peak

@@ -1,0 +1,32 @@
+Repeat: 14
+
+003.  Longest Substring Without Repeating Characters
+015.  3Sum
+287.  Find the Duplicate Number
+986.  Interval List Intersections
+763.  Partition Labels
+011.  Container With Most Water
+532.  K-diff Pairs in an Array
+016.  3Sum Closest
+209.  Minimum Size Subarray Sum
+1229. Meeting Scheduler
+019.  Remove Nth Node From End of List
+075.  Sort Colors
+487.  Max Consecutive Ones II
+360.  Sort Transformed Array
+
+To-Do: 13
+
+1570. Dot Product of Two Sparse Vectors
+723.  Candy Crush
+340.  Longest Substring with At Most K Distinct Characters
+086.  Partition List
+881.  Boats to Save People
+424.  Longest Repeating Character Replacement
+567.  Permutation in String
+1004. Max Consecutive Ones III
+845.  Longest Mountain in Array
+259.  3Sum Smaller
+713.  Subarray Product Less Than K
+457.  Circular Array Loop
+159.  Longest Substring with At Most Two Distinct Characters

@@ -1,0 +1,25 @@
+Repeat: 11
+
+017.  Letter Combinations of a Phone Number
+022.  Generate Parentheses
+079.  Word Search
+046.  Permutations
+039.  Combination Sum
+078.  Subsets
+131.  Palindrome Partitioning
+093.  Restore IP Addresses
+351.  Android Unlock Patterns
+1219. Path with Maximum Gold
+040.  Combination Sum II
+
+
+To-Do: 8
+
+526.  Beautiful Arrangement
+211.  Design Add and Search Words Data Structure
+1239. Maximum Length of a Concatenated String with Unique Characters
+797.  All Paths From Source to Target
+306.  Additive Number
+089.  Gray Code
+047.  Permutations II
+090.  Subsets II
