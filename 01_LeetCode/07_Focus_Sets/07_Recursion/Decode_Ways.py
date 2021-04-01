@@ -20,11 +20,30 @@ Given a string `s` containing only digits, return *the **number** of ways t
 
 The answer is guaranteed to fit in a **32-bit** integer.
 """
+# Simple recursion: Brute Force
+class Solution:
+    def numDecodings(self, s: str) -> int:
+        if (not s):
+            return 0
+        return self.ways(0, s)
+    
+    def ways(self, i, s):
+        if (i == len(s)):
+            return 1
+        
+        if (s[i] == "0"):
+            return 0
+        
+        if (i == len(s)-1):
+            return 1
+        
+        return self.ways(i+1, s) + (self.ways(i+2, s) if (int(s[i:i+2]) <= 26) else 0)
 
+# Optimized: Memoization
 class Solution:
     def __init__(self):
         self.memo = {}
-        
+
     def numDecodings(self, s: str) -> int:
         return self.helper(0, s)
     
