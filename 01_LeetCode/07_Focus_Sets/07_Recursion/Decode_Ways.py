@@ -49,24 +49,29 @@ class Solution:
             return 0
         return self.ways(0, s)
     
+    # Since i goes 1 or 2 steps each iteration, 
+    # Check i has reached len(s) which is 1+ the end of the string. 
+    # Check i has reached len(s)-1 which is exactly the last element of string. 
+    # Check if current character in the string is "0"
+    # Also finally check if the position is a key in dictionary. (We don't want to 
+    # repeat work on something that has already been computed). 
     def ways(self, i, s):
+        
+        # Termination functions (x3)
         if (i == len(s)):
             return 1
         
         if (s[i] == "0"):
             return 0
         
+        # Memoization function (x1)
         if (i in self.pos):
             return self.pos[i]
         
         if (i == len(s)-1):
             return 1
         
+        # Recursion Function
         self.pos[i] = self.ways(i+1, s) + (self.ways(i+2, s) if (int(s[i:i+2]) <= 26) else 0)
         return self.pos[i]
-        
-        # Recursion here is two part. 
-        # Jump once for a single digit possibility. 
-        # Jump twice for a double digit possibility. (Need to check if is within range)
-        self.memo[i] = self.helper(i+1, s) + (self.helper(i+2, s) if (int(s[i:i+2]) <= 26) else 0)
-        return self.memo[i]
+    
