@@ -42,23 +42,28 @@ class Solution:
 # Optimized: Memoization
 class Solution:
     def __init__(self):
-        self.memo = {}
-
-    def numDecodings(self, s: str) -> int:
-        return self.helper(0, s)
+        self.pos = {}
     
-    def helper(self, i, s):
+    def numDecodings(self, s: str) -> int:
+        if (not s):
+            return 0
+        return self.ways(0, s)
+    
+    def ways(self, i, s):
         if (i == len(s)):
             return 1
         
         if (s[i] == "0"):
             return 0
         
-        if (i == len(s) - 1):
+        if (i in self.pos):
+            return self.pos[i]
+        
+        if (i == len(s)-1):
             return 1
         
-        if (i in self.memo):
-            return self.memo[i]
+        self.pos[i] = self.ways(i+1, s) + (self.ways(i+2, s) if (int(s[i:i+2]) <= 26) else 0)
+        return self.pos[i]
         
         # Recursion here is two part. 
         # Jump once for a single digit possibility. 
