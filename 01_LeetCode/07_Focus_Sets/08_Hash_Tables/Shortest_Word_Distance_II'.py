@@ -50,6 +50,37 @@ class WordDistance:
                 ans = min(ans, abs(i-j))
         return ans
 
+    def shortest(self, word1: str, word2: str) -> int:
+        dist1 = self.wrd[word1]
+        dist2 = self.wrd[word2]
+        ans = float('inf')
+        l1, l2 = 0, 0
+
+        while (l1 < len(dist1) and l2 < len(dist2)):
+            ans = min(ans, abs(dist1[l1] - dist2[l2]))
+            if (dist1[l1] < dist2[l2]):
+                l1 += 1
+            else:
+                l2 += 1
+        return ans
+
+    # Comparing the locations of two strings in the word dictionary, 
+    # When one position is smaller that the other increment pointer for the smaller.
+    # Continue this until you reach the end of the shortest array. 
+    def shortest(self, word1: str, word2: str) -> int:
+        dist1 = self.wrd[word1]
+        dist2 = self.wrd[word2]
+        l1, l2 = 0, 0
+        ans = float('inf')
+
+        while (l1 < len(dist1) and l2 < len(dist2)):
+            ans = min(ans, abs(dist1[l1] - dist2[l2]))
+            if (dist1[l1] < dist2[l2]):
+                l1 += 1
+            else:
+                l2 += 1
+        return ans        
+
 
 # Your WordDistance object will be instantiated and called as such:
 # obj = WordDistance(wordsDict)
