@@ -12,18 +12,13 @@ false otherwise. word may contain dots '.' where dots can be matched with any le
 """
 
 
-# Not able to figure out the logic for when there is a '.' in the end of the search string. 
 class Node:
     def __init__(self):
         self.next = {}
         self.isEnd = False
 
 class WordDictionary:
-
     def __init__(self):
-        """
-        Initialize your data structure here.
-        """
         self.root = Node()
         
     def addWord(self, word: str) -> None:
@@ -32,24 +27,33 @@ class WordDictionary:
             if (not node.next or s not in node.next):
                 node.next[s] = Node()
             node = node.next[s]
-        
-        node.next[""] = Node()
-        node.next[""].isEnd = True
+        node.isEnd = True
 
     def search(self, word: str) -> bool:        
         node = self.root
-        return self.searchHelper(node, word, 0)
+        self.res = False
+        self.searchHelper(node, word)
+        return self.res
     
-    def searchHelper(self, node, word, idx):
-        if (idx >= len(word) or node.isEnd):
-            return True
-        
-        if (word[idx] != "."):
-            if (word[idx] not in node.next):
-                return False
-            return self.searchHelper(node.next[word[idx]], word, idx+1)
+    def searchHelper(self, node, word):
+        # Termiantion conditions
+        if (not word): 
+            if (node.isEnd):
+                self.res = True
+            return
+
+        if (word[0] == "."):
+            for n in node.next.values():
+                self.searchHelper(n, word[1:])
         else:
-            for key in node.next:
-                return self.searchHelper(node.next[key], word, idx+1)
-        return False
+            if (word[0] not in node.next):
+                return
+            self.searchHelper(node.next[word[0]], word[1:])
+            
+
+
+# Your WordDictionary object will be instantiated and called as such:
+# obj = WordDictionary()
+# obj.addWord(word)
+# param_2 = obj.search(word)
             
