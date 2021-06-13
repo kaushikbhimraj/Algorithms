@@ -1,0 +1,15 @@
+Cracking the coding interview leetcoding list
+
+Chapter 8: Recursion and Dynamic Programmnig
+	1.  Triple Set - 1137 				(DONE)
+	2.  Robot in a Grid - 63 			(DONE)
+	3.  Power Set - 78
+	4.  Divide Two Integers - 29
+	5.  Permutation without Dups - 46
+	6.  Parens - 22
+	7.  Paint Fill - 733
+	8.  Coins- 518
+	9.  Eight Queens - 51
+	10. Stack of Boxes - 1691
+
+	Missing: Magic Index, Tower of Hanoi, Boolean Evaluation
