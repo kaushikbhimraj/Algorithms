@@ -42,16 +42,3 @@ class knapsack_memoization:
 
 		book[totalWeight] = max(prices[idx] + self.bag_helper(prices, weights, totalWeight-weights[idx], idx-1, book), self.bag_helper(prices, weights, totalWeight, idx-1, book))
 		return book[totalWeight]
-
-
-
-# Unit Test
-p = [6,8,7]
-w = [3,2,4]
-b = 8
-
-x = knapsack_recursion()
-print(x.bag(p, w, b))
-
-x = knapsack_memoization()
-print(x.bag(p,w,b))
