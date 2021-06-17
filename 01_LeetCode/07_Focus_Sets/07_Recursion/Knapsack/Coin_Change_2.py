@@ -32,10 +32,31 @@ class CoinChangeRecursion:
 
 		return self.change_helper(amount-coins[idx], coins, idx) + self.change_helper(amount, coins, idx-1)
 
-class CoinChangeMemoization:
-	def change(self, amount, coins):
-		return
-
-	def change_helper(self, amount, coins, idx, book):
-		return
-
+class CoinChangeMemoizatino:
+    def change(self, amount: int, coins: List[int]) -> int:
+        if (len(coins) == 0):
+            return 0
+        
+        if (amount == 0):
+            return 1
+        
+        return self.change_helper(amount, coins, len(coins), {})
+    
+    def change_helper(self, amount, coins, idx, book):
+        if (idx == 0):
+            return 0
+        
+        if (amount == 0):
+            return 1
+        
+        if ((idx,amount) in book):
+            return book[(idx,amount)]
+        
+        if (coins[idx-1] > amount):
+            book[(idx,amount)] = self.change_helper(amount, coins, idx-1, book)
+            return book[(idx,amount)]
+        
+        # If amount has been decremented by a coin, that same coin can be re-used again. 
+        # So the pointer is kept the same for the next recursion. 
+        book[(idx,amount)] = self.change_helper(amount-coins[idx-1], coins, idx, book) + self.change_helper(amount, coins, idx-1, book)
+        return book[(idx,amount)]
